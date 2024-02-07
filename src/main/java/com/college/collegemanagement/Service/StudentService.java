@@ -28,4 +28,16 @@ public class StudentService {
     public Mono<Student> getStudentById(int id){
         return studentRepository.findById(id);
     }
+
+    public Mono<Student> updateStudentById(Integer id, Student student){
+        return studentRepository.findById(id).flatMap(dbStudent -> {dbStudent.setName(student.getName());
+            dbStudent.setAddress(student.getAddress());
+         return studentRepository.save(dbStudent);
+        });
+    }
+
+    public Mono<Void> deleteStudent(Integer id){
+        return studentRepository.deleteById(id);
+
+    }
 }
