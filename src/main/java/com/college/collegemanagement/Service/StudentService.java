@@ -15,6 +15,10 @@ public class StudentService {
     @Autowired
     private  StudentRepository studentRepository;
 
+    public Mono<Student> createStudent(Student student){
+        return studentRepository.save(student);
+    }
+
 
 
     public Flux<Student> getAllStudent(){
